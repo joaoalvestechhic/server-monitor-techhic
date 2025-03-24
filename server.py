@@ -1,8 +1,10 @@
+import os
 import psutil
 import time
 import requests
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
 class ServerMonitor:
     def __init__(self):
@@ -11,7 +13,7 @@ class ServerMonitor:
             "alert_cpu_threshold": 90,
             "alert_memory_threshold": 85,
             "api_endpoint": "https://monitor.hikdev.internal/metrics",
-            "auth_key": "HIK_DEV_DESCUIDADO_ac7c90516544771747b213e49cfb95dc" #remover quando subir para produção
+            "auth_key": os.getenv('AUTH_KEY')
         }
         self.last_alert = None
         self.alert_cooldown = 3600
